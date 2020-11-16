@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf的入门</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<!--输出hello数据-->
+<p th:text="${hello}"></p>
+<hr>
+<!--th:action-->
+<form th:action='@{/hello}'>
+    <input type="submit" value="submit">
+</form>
+<hr>
+<table>
+    <tr>
+        <th>count</th>
+        <th>index</th>
+        <th>id</th>
+        <th>name</th>
+        <th>address</th>
+    </tr>
+    <tr th:each="user,userStat:${users}">
+        <td th:text="${userStat.count}"></td>
+        <td th:text="${userStat.index}"></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.address}"></td>
+    </tr>
+
+</table>
+
+<hr>
+<!--已知字段名称-->
+<span th:text="${dataMap.No}"></span>
+<span th:text="${dataMap.address}"></span>
+<hr>
+<!--位置字段名称-->
+<em th:each="map:${dataMap}">
+<span th:text="${map.key}"></span>
+<span th:text="${map.value}"></span>
+</em>
+<span></span>
+<hr>
+<em th:each="name:${names}">
+
+    <span th:text="${name}"></span>
+
+</em>
+<hr>
+<span th:text="${#dates.format(now,'yyyy-MM-dd HH-mm-ss')}"></span>
+
+<hr>
+<span th:if="${age>18}">成年了...!</span>
+<hr>
+
+<div id="C" th:include="footer::copy"></div>
+
+</body>
+</html>
